@@ -1,6 +1,6 @@
 # gnochm.spec
 %define name gnochm
-%define version 0.9.9
+%define version 0.9.10
 %define release %mkrel 1
 
 %define Summary A chm file viewer for gnome
@@ -27,7 +27,7 @@ BuildRoot: 	%_tmppath/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: scrollkeeper libGConf2-devel
 # needed for aclocal
-BuildRequires: intltool
+BuildRequires: intltool gettext-devel
 Requires(post): desktop-file-utils 
 Requires(postun): desktop-file-utils
 
@@ -68,19 +68,6 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std UPDATE_MIME_DATABASE=tr
 
 %find_lang %name --with-gnome
 
-# menu
-mkdir -p %buildroot/%_menudir
-cat > %buildroot/%_menudir/%name << EOF
-?package(%name): \
-command="%_bindir/%name" \
-needs="x11" \
-icon="%name.png" \
-section="%section" \
-title="%title" \
-longtitle="%Summary" \
-xdg="true"
-EOF
-
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
@@ -110,7 +97,7 @@ GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source` gconftool-2 --makefile-in
 if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
 touch %{_datadir}/gnome/help/%{name}/C/%{name}.html
 if [ -x %{_bindir}/yelp-pregenerate ]; then %{_bindir}/yelp-pregenerate %{_datadir}/gnome/help/%{name}/*/%name.xml > /dev/null; fi
-%{_bindir}/update-mime-database %{_datadir}/mime/
+%update_mime_database
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -121,7 +108,7 @@ fi
 %{clean_desktop_database}
 %clean_menus
 if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
-if [ "$1" = "0" ]; then %{_bindir}/update-mime-database %{_datadir}/mime; fi
+%clean_mime_database
 
 %clean
 rm -rf %buildroot
@@ -142,9 +129,6 @@ rm -rf %buildroot
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/mime/packages/%{name}.xml
 %{_datadir}/application-registry/gnochm.*
-%_menudir/%name
 %_liconsdir/%name.png
 %_miconsdir/%name.png
 %_iconsdir/%name.png
-
-
