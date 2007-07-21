@@ -34,8 +34,8 @@ Requires(postun): desktop-file-utils
 Requires: pygtk2.0-libglade, gnome-python
 Requires: gnome-python-bonobo gnome-python-gtkhtml2
 Requires: gnome-python-gconf gnome-python-gnomevfs
-Requires: python-chm 
-BuildArch: noarch
+Requires: python-chm
+ 
 %description
 A CHM file viewer for Gnome. Features are:
   
