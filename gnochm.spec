@@ -1,11 +1,11 @@
 # gnochm.spec
 %define name gnochm
-%define version 0.9.10
+%define version 0.9.11
 %define release %mkrel 1
 
 %define Summary A chm file viewer for gnome
 %define title	Gnochm
-%define section Applications/Publishing 
+%define section Applications/Publishing
 
 Summary: 	%Summary
 Name: 		%name
@@ -28,21 +28,21 @@ BuildRoot: 	%_tmppath/%{name}-%{version}-%{release}-buildroot
 BuildRequires: scrollkeeper libGConf2-devel
 # needed for aclocal
 BuildRequires: intltool gettext-devel
-Requires(post): desktop-file-utils 
+Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
 Requires: pygtk2.0-libglade, gnome-python
 Requires: gnome-python-bonobo gnome-python-gtkhtml2
 Requires: gnome-python-gconf gnome-python-gnomevfs
 Requires: python-chm
- 
+
 %description
 A CHM file viewer for Gnome. Features are:
-  
+
   * Full text search
   * Bookmarks
   * Support for external ms-its links
-  * Configurable support for http links 
+  * Configurable support for http links
   * Internationalisation
 
 # Prep
@@ -58,7 +58,7 @@ autoconf
 automake
 
 %build
-%configure2_5x --prefix=%buildroot 
+%configure2_5x --prefix=%buildroot
 
 %make WARN_CFLAGS=""
 
