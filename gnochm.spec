@@ -23,6 +23,7 @@ Source3:	%name.png
 Patch:		gnochm-makefile.patch
 Patch1:         gnochm.py.in.patch
 
+BuildRoot: 	%_tmppath/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: scrollkeeper libGConf2-devel
 # needed for aclocal
