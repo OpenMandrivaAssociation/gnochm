@@ -93,7 +93,7 @@ install -m 644 %SOURCE3 %buildroot/%_iconsdir/%name.png
 
 %update_menus
 %post_install_gconf_schemas gnochm
-if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
+%update_scrollkeeper
 touch %{_datadir}/gnome/help/%{name}/C/%{name}.html
 if [ -x %{_bindir}/yelp-pregenerate ]; then %{_bindir}/yelp-pregenerate %{_datadir}/gnome/help/%{name}/*/%name.xml > /dev/null; fi
 %update_mime_database
@@ -104,7 +104,7 @@ if [ -x %{_bindir}/yelp-pregenerate ]; then %{_bindir}/yelp-pregenerate %{_datad
 %postun
 %{clean_desktop_database}
 %clean_menus
-if [ -x %{_bindir}/scrollkeeper-update ]; then %{_bindir}/scrollkeeper-update -q; fi
+%clean_scrollkeeper
 %clean_mime_database
 
 %clean
