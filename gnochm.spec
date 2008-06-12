@@ -89,23 +89,31 @@ install -m 644 %SOURCE2 %buildroot/%_liconsdir/%name.png
 install -m 644 %SOURCE3 %buildroot/%_iconsdir/%name.png
 
 %post
+%if %mdkversion < 200900
 %{update_desktop_database}
+%endif
 
+%if %mdkversion < 200900
 %update_menus
 %post_install_gconf_schemas gnochm
 %update_scrollkeeper
+%endif
 touch %{_datadir}/gnome/help/%{name}/C/%{name}.html
 if [ -x %{_bindir}/yelp-pregenerate ]; then %{_bindir}/yelp-pregenerate %{_datadir}/gnome/help/%{name}/*/%name.xml > /dev/null; fi
+%if %mdkversion < 200900
 %update_mime_database
+%endif
 
 %preun
 %preun_uninstall_gconf_schemas gnochm
 
+%if %mdkversion < 200900
 %postun
 %{clean_desktop_database}
 %clean_menus
 %clean_scrollkeeper
 %clean_mime_database
+%endif
 
 %clean
 rm -rf %buildroot
