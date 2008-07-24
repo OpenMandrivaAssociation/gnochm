@@ -1,7 +1,7 @@
 # gnochm.spec
 %define name gnochm
 %define version 0.9.11
-%define release %mkrel 1
+%define release %mkrel 3
 
 %define Summary A chm file viewer for gnome
 %define title	Gnochm
