@@ -26,8 +26,7 @@ Patch1:         gnochm.py.in.patch
 BuildRoot: 	%_tmppath/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: scrollkeeper libGConf2-devel
-# needed for aclocal
-BuildRequires: intltool gettext-devel
+BuildRequires: intltool gettext-devel gnome-common
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
@@ -52,15 +51,11 @@ A CHM file viewer for Gnome. Features are:
 %patch -p0 -b .makefile
 %patch1 -p0 -b .makefile
 
-#rebuild
-aclocal
-autoconf
-automake
-
 %build
-%configure2_5x --prefix=%buildroot
+NOCONFIGURE=yes gnome-autogen.sh 
+%configure2_5x
 
-%make WARN_CFLAGS=""
+%make
 
 %install
 rm -rf %buildroot
