@@ -1,16 +1,7 @@
-# gnochm.spec
-%define name gnochm
-%define version 0.9.11
-%define release %mkrel 4
-
-%define Summary A chm file viewer for gnome
-%define title	Gnochm
-%define section Applications/Publishing
-
-Summary: 	%Summary
-Name: 		%name
-Version: 	%version
-Release: 	%release
+Summary: 	A chm file viewer for gnome
+Name: 		gnochm
+Version: 	0.9.11
+Release: 	%mkrel 5
 License: GPL
 Group: 		Graphical desktop/GNOME
 URL: http://gnochm.sourceforge.net/
@@ -22,11 +13,12 @@ Source3:	%name.png
 
 Patch:		gnochm-makefile.patch
 Patch1:         gnochm.py.in.patch
-
+Patch2:		gnochm-desktop.patch
 BuildRoot: 	%_tmppath/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: scrollkeeper libGConf2-devel
 BuildRequires: intltool gettext-devel gnome-common
+%py_requires
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
@@ -50,6 +42,7 @@ A CHM file viewer for Gnome. Features are:
 
 %patch -p0 -b .makefile
 %patch1 -p0 -b .makefile
+%patch2 -p0 -b .desktop
 
 %build
 NOCONFIGURE=yes gnome-autogen.sh 
@@ -62,19 +55,6 @@ rm -rf %buildroot
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std UPDATE_MIME_DATABASE=true UPDATE_DESKTOP_DATABASE=true
 
 %find_lang %name --with-gnome
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Name=GnoCHM
-Comment=A chm file viewer for gnome
-Exec=%{name}
-Icon=%{name}
-Terminal=false
-Type=Application
-Categories=Office;Viewer;X-MandrivaLinux-Office-Presentations;
-EOF
-
 
 # icon
 mkdir -p %buildroot/{%_liconsdir,%_iconsdir,%_miconsdir}
@@ -115,10 +95,8 @@ rm -rf %buildroot
 
 %files -f %name.lang
 %defattr(-,root,root)
-
 %doc ABOUT-NLS AUTHORS COPYING ChangeLog NEWS README
 %config(noreplace) %{_sysconfdir}/gconf/schemas/gnochm.schemas
-
 %{_bindir}/gnochm
 %dir %{_datadir}/gnochm/
 %dir %{_datadir}/gnochm/glade/
