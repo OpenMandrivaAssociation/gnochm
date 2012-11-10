@@ -1,0 +1,17 @@
+Index: data/Makefile.am
+===================================================================
+--- data/Makefile.am
++++ data/Makefile.am	2005-06-20 18:38:02.165376431 +0200
+@@ -62,8 +62,8 @@
+ 	fi
+ 
+ if MIMEUPDATE
+-install-data-hook:
+-	if test "x$(SHAREDMIME_TOOL)" != "xno"; then \
+-			$(SHAREDMIME_TOOL) $(datadir)/mime; \
+-	fi
++#install-data-hook:
++#	if test "x$(SHAREDMIME_TOOL)" != "xno"; then \
++#			$(SHAREDMIME_TOOL) $(datadir)/mime; \
++#	fi
+ endif

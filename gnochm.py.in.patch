@@ -1,0 +1,12 @@
+--- gnochm.py.in.orig   2004-12-20 12:47:53.000000000 +0100
++++ gnochm.py.in        2005-03-18 02:00:30.317242497 +0100
+@@ -22,7 +22,7 @@
+
+ app = 'gnochm'
+ version = '@VERSION@'
+-homedir = '@APPDATADIR@'
++homedir = '/usr/share'
+
+ '''
+    gnochm - a Gnome viewer for CHM (Html help) files.
+

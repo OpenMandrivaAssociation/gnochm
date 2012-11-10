@@ -1,0 +1,16 @@
+--- data/gnochm.desktop.in.orig	2010-08-15 07:22:33.000000000 +0200
++++ data/gnochm.desktop.in	2010-08-15 07:23:32.000000000 +0200
+@@ -1,11 +1,10 @@
+ [Desktop Entry]
+-Encoding=UTF-8
+ _Name=CHM Viewer
+ _Comment=Read CHM files
+ Exec=gnochm %F
+-Icon=gnochm.png
++Icon=gnochm
+ Terminal=false
+ Type=Application
+ X-GNOME-DocPath=gnochm/gnochm.xml
+-Categories=Application;Utility;X-Red-Hat-Extra;
++Categories=Office;Viewer;
+ MimeType=application/x-chm
