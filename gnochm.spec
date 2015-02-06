@@ -1,7 +1,7 @@
 Summary:	A chm file viewer for gnome
 Name:		gnochm
 Version:	0.9.11
-Release:	9
+Release:	10
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://gnochm.sourceforge.net/
