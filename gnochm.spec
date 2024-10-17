@@ -4,7 +4,7 @@ Version:	0.9.11
 Release:	10
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
-Url:		http://gnochm.sourceforge.net/
+Url:		https://gnochm.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/gnochm/%{name}-%{version}.tar.bz2
 Source1:	%{name}-16.png
 Source2:	%{name}-32.png
