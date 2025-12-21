@@ -12,6 +12,11 @@ Source3:	%{name}.png
 Patch0:		gnochm-makefile.patch
 Patch1:		gnochm.py.in.patch
 Patch2:		gnochm-desktop.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gnome-common
 BuildRequires:	intltool
 BuildRequires:	scrollkeeper
